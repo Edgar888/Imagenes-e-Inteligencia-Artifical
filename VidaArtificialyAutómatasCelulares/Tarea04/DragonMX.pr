@@ -1,0 +1,59 @@
+;redcode
+;name Dragon MX
+;author Edgar Montiel Ledesma
+;strategy Bombardero tipo Torch + lanzador de imp mejorado con mejor separación
+;assert CORESIZE == 8000
+
+; Constantes
+hop     equ     16           ; Ajustado para mejor cobertura de memoria
+step    equ     2 * hop      ; Tamaño del paso para el bombardeo
+time    equ     761          ; Tiempo para cambiar de estrategia
+ofs     equ     hit - step * time - hop
+wlen    equ     7            ; Longitud de escritura
+stream  equ     4910         ; Desplazamiento del flujo
+
+; Lanzador de imp
+delay   equ     80           ; Incremento del retraso para un mejor tiempo de activación
+istep   equ     2667         ; Tamaño del paso del imp
+
+; Configuración inicial
+bds     equ     4000         ; Inicio de los datos de arranque
+bdi     equ     3600         ; Inicio de los datos del imp
+kofs    equ     30           ; Desplazamiento del "kill"
+bmofs   equ     kofs + 1     ; Desplazamiento del bombardero
+iofs    equ     7700         ; Desplazamiento del imp
+x0      equ     copy         ; Posición inicial de la copia
+
+; Copiar datos a una ubicación más segura e inicializar
+copy    mov     < bpf        ,   < gost
+boot    mov     < bpf        ,   < gost
+        mov     < ilfrom     ,   < goil
+        mov       imp        ,   < ito
+        djn       copy       ,   # 4
+        mov       kill       ,     x0 + bds + kofs
+        mov       bm         ,     x0 + bds + bmofs
+gost    spl     @ 0          ,     x0 + bds + 7
+goil    jmp     @ 0          ,     x0 + bdi + 4
+ito     dat     # 0          ,   # x0 + bdi + iofs + 4
+
+; Rutina de bombardeo
+bs      spl       0          ,   < wlen + 1 - hop
+ptr     mov       bs         ,   < ofs
+        mov       bs + bmofs ,   @ ptr
+cptr    add     # step       ,     ptr
+hit     jmp       ptr        ,     0
+clear   mov       bs + kofs  ,   < cptr
+        djn       clear      ,   < bs + stream
+bpf     dat     # 0          ,   # 0
+kill    dat     < wlen - hop ,   < istep
+bm      mov       hop        ,   < hop + 1
+
+; Lanzador de imp con retraso ajustado y tamaño de paso mejorado
+il      djn       0          ,   # delay
+ilfrom  spl       0          ,     3
+        add     # istep + 1  ,     1
+        jmp     @ 0          ,     il + iofs - istep
+
+imp     mov       0          ,     istep
+
+end     boot

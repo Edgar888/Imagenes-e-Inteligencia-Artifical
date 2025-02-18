@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{README: Programa de Harry Potter}
+\author{Edgar Montiel Ledesma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Descripción}
+Este programa en Python está basado en la temática de Harry Potter y contiene dos funciones principales relacionadas con las casas de Hogwarts y los hechizos famosos de la saga. Además, el programa tiene la capacidad de reescribir su propio código fuente en un archivo llamado \texttt{replicating.py}.
+
+\section{Funciones}
+\subsection{casa\_hogwarts(hechizo)}
+Esta función toma como argumento un hechizo y devuelve la casa de Hogwarts a la que está asociado. Las asociaciones predefinidas son:
+\begin{itemize}
+    \item \texttt{"Expecto Patronum"} $\rightarrow$ Gryffindor
+    \item \texttt{"Avada Kedavra"} $\rightarrow$ Slytherin
+    \item \texttt{"Lumos"} $\rightarrow$ Ravenclaw
+    \item \texttt{"Wingardium Leviosa"} $\rightarrow$ Hufflepuff
+\end{itemize}
+Si el hechizo no está en la lista, devuelve \texttt{"Casa desconocida"}.
+
+\subsection{hechizo\_favorito(casa)}
+Esta función toma como argumento una casa de Hogwarts y devuelve el hechizo favorito de esa casa. Las asociaciones predefinidas son:
+\begin{itemize}
+    \item \texttt{"Gryffindor"} $\rightarrow$ Expecto Patronum
+    \item \texttt{"Slytherin"} $\rightarrow$ Avada Kedavra
+    \item \texttt{"Ravenclaw"} $\rightarrow$ Lumos
+    \item \texttt{"Hufflepuff"} $\rightarrow$ Wingardium Leviosa
+\end{itemize}
+Si la casa no está en la lista, devuelve \texttt{"Hechizo desconocido"}.
+
+\subsection{escribir\_codigo()}
+Esta función es responsable de reescribir el código fuente completo del programa y guardarlo en un archivo llamado \texttt{replicating.py}. Utiliza una plantilla interna del propio código y lo escribe en el nuevo archivo.
+
+\section{Ejecución}
+Para ejecutar el programa, sigue estos pasos:
+\begin{enumerate}
+    \item Guarda el código en un archivo llamado \texttt{Quine.py}.
+    \item En la terminal, ejecuta el siguiente comando:
+    \begin{verbatim}
+    python3 Quine.py
+    \end{verbatim}
+    \item El programa mostrará ejemplos del hechizo favorito de Gryffindor y la casa que usa el hechizo \texttt{Avada Kedavra}.
+    \item Además, el programa generará un archivo llamado \texttt{replicating.py} que contendrá una copia del código fuente original.
+\end{enumerate}
+
+\section{Requisitos}
+Para ejecutar el programa, necesitas tener instalado:
+\begin{itemize}
+    \item Python 3.x
+\end{itemize}
+
+\end{document}

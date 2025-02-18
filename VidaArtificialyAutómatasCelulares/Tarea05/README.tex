@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    frame=single,
+    breaklines=true,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+}
+
+\title{Documentación del programa Red Booleana de Kauffman}
+\author{Edgar Montiel Ledesma}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+El programa implementa una \textbf{Red Booleana de Kauffman}, que es un modelo matemático utilizado para simular sistemas complejos con interacciones no lineales entre nodos. Además, incluye una interfaz gráfica desarrollada en \textit{Tkinter}, que permite interactuar con el modelo y visualizar los resultados.
+
+\section{Descripción del código}
+El programa está dividido en tres partes principales: la definición de la red booleana, las funciones de simulación, y la interfaz gráfica.
+
+\subsection{Definición de la red booleana}
+La red booleana se implementa en una clase llamada \texttt{RedBooleanaKauffman}. Cada red tiene los siguientes componentes:
+
+\begin{itemize}
+    \item \textbf{Nodos:} Representan las variables del sistema, y cada uno puede estar en un estado binario (\texttt{0} o \texttt{1}).
+    \item \textbf{Conexiones:} Cada nodo está conectado a otros \texttt{k} nodos, definidos aleatoriamente.
+    \item \textbf{Funciones booleanas:} Cada nodo tiene una función booleana que determina su estado en función de los estados de los nodos a los que está conectado.
+\end{itemize}
+
+\noindent El siguiente fragmento de código define la clase:
+
+\begin{lstlisting}
+class RedBooleanaKauffman:
+    def __init__(self, num_nodos, k):
+        self.num_nodos = num_nodos
+        self.k = k
+        self.estados = [random.choice([0, 1]) for _ in range(num_nodos)]
+        self.conexiones = self._generar_conexiones()
+        self.funciones_booleanas = self._generar_funciones_booleanas()
+\end{lstlisting}
+
+\subsection{Funciones de la clase}
+\begin{itemize}
+    \item \texttt{\_generar\_conexiones:} Genera aleatoriamente las conexiones entre los nodos.
+    \item \texttt{\_generar\_funciones\_booleanas:} Asigna una función booleana a cada nodo. Cada función es una tabla de verdad generada aleatoriamente.
+    \item \texttt{\_evaluar\_funcion\_booleana:} Evalúa el próximo estado de un nodo utilizando su función booleana.
+    \item \texttt{actualizar:} Actualiza los estados de todos los nodos de la red.
+    \item \texttt{simular:} Simula la evolución de la red durante un número determinado de pasos.
+\end{itemize}
+
+\subsection{Interfaz gráfica}
+La interfaz gráfica permite al usuario ingresar parámetros y visualizar los resultados de la simulación. Se implementa utilizando \texttt{Tkinter}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{K1.png}
+    \caption{Imagen del programa.}
+    \label{fig:original}
+\end{figure}
+
+\begin{lstlisting}
+ventana = Tk()
+ventana.title("Red Booleana de Kauffman")
+ventana.geometry("800x600")
+\end{lstlisting}
+
+\noindent Las funciones principales de la interfaz son:
+\begin{itemize}
+    \item \texttt{inicializar\_red:} Crea una nueva red con los parámetros definidos por el usuario.
+    \item \texttt{simular\_red:} Realiza la simulación de la red y muestra los resultados en un cuadro de texto.
+\end{itemize}
+        
+\subsection{Visualización de resultados}
+El historial de simulación se muestra en un cuadro de texto dentro de la interfaz. Cada línea representa el estado de la red en un paso de tiempo.
+
+
+
+\section{Ejecución del programa}
+Al ejecutar el programa, la ventana principal muestra los controles para configurar la red:
+\begin{itemize}
+    \item \textbf{Número de nodos:} Total de nodos en la red.
+    \item \textbf{Conexiones por nodo (k):} Número de conexiones que cada nodo tiene con otros.
+    \item \textbf{Pasos de simulación:} Número de iteraciones para simular.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{K2.png}
+        \caption{Resultado.}
+        \label{fig:resultado}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{K3.png}
+        \caption{Simulación.}
+        \label{fig:simulacion}
+    \end{minipage}
+\end{figure}
+
+
+\noindent Al inicializar la red y ejecutar la simulación, se generan los estados de la red en cada paso.
+
+\section{Conclusión}
+Este programa permite explorar el comportamiento de redes booleanas de Kauffman y observar cómo evolucionan sus estados con el tiempo. Además, la interfaz gráfica hace que sea fácil de usar y comprender los resultados.
+
+\end{document}

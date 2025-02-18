@@ -1,0 +1,58 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=1in}
+\title{Algoritmo Genético con Interfaz Gráfica}
+\author{Edgar Montiel Ledesma}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Explicación del Código}
+
+El programa implementa un \textbf{algoritmo genético} para encontrar una cadena objetivo mediante operaciones de \textit{cruzamiento}, \textit{mutación} y \textit{selección}. La interfaz gráfica facilita la interacción del usuario, quien puede definir parámetros como la cadena objetivo, el tamaño de la población y la tasa de mutación. A continuación, se describe cada componente:
+
+\begin{itemize}
+    \item \textbf{Generar cadena aleatoria:} Crea cadenas de caracteres aleatorios de la misma longitud que la cadena objetivo.
+    \item \textbf{Calcular aptitud:} Evalúa cuántos caracteres coinciden con la cadena objetivo, determinando qué tan apta es una cadena.
+    \item \textbf{Mutar:} Introduce cambios aleatorios en una cadena con una probabilidad definida por la tasa de mutación.
+    \item \textbf{Cruzar:} Combina dos cadenas en un punto aleatorio para producir una nueva cadena.
+    \item \textbf{Interfaz gráfica:} Utiliza \texttt{tkinter} para recibir parámetros de entrada y mostrar resultados visualmente:
+    \begin{itemize}
+        \item Entradas para la cadena objetivo, tamaño de la población y tasa de mutación.
+        \item Barra de progreso que muestra el avance del algoritmo.
+        \item Etiqueta que muestra la mejor cadena encontrada en cada generación.
+    \end{itemize}
+\end{itemize}
+
+\section*{Características}
+
+\begin{enumerate}
+    \item \textbf{Interfaz gráfica amigable:} Permite a los usuarios ingresar parámetros y observar resultados de manera intuitiva.
+    \item \textbf{Retroalimentación visual:} Una barra de progreso indica el porcentaje de coincidencia entre la mejor cadena y la cadena objetivo.
+    \item \textbf{Actualización en tiempo real:} Los resultados de cada generación se actualizan dinámicamente en la interfaz.
+    \item \textbf{Mensajes informativos:} Notificaciones para errores y éxito mediante cuadros de diálogo.
+\end{enumerate}
+
+\section*{Prueba}
+
+Para probar el programa, utiliza los siguientes parámetros:
+
+\begin{itemize}
+    \item \textbf{Cadena objetivo:} \texttt{LA SOMBRA SOBRE INNSMOUTH}
+    \item \textbf{Tamaño de población:} \texttt{100}
+    \item \textbf{Tasa de mutación:} \texttt{0.01}
+\end{itemize}
+
+Durante la ejecución, la barra de progreso mostrará el avance hacia la coincidencia total, mientras que las generaciones se presentarán dinámicamente en la interfaz. Al encontrar la cadena objetivo, aparecerá un cuadro de diálogo informando el éxito.
+
+\section*{Conclusión}
+
+Este programa combina conceptos fundamentales de algoritmos genéticos con una interfaz gráfica sencilla y funcional, ofreciendo una experiencia interactiva para explorar heurísticas de optimización.
+
+\end{document}
